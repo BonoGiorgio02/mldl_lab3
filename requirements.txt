@@ -1,4 +1,4 @@
 torchvision
 torch
 os-sys
-shutil
+pytest-shutil
