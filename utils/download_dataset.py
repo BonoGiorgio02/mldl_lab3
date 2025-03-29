@@ -47,29 +47,21 @@ with open(annotations_file, "r") as f:
 # Rimuoviamo la cartella images vuota
 shutil.rmtree(os.path.join(val_dir, "images"))
 
-class dataLoader():
-    def _init(self):
-        transform = T.Compose([
-            T.Resize((224, 224)),  # Resize to fit the input dimensions of the network
-            T.ToTensor(),
-            T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-            # mean and standard deviation for this dataset
-        ])
-        # root folder / class name / name of the file of the parameters
-        # root/{classX}/x001.jpg
-        #root is the folder that contains all the data for the model
-        self.tiny_imagenet_dataset_train = ImageFolder(root='dataset/tiny-imagenet-200/train', transform=transform)
-        self.tiny_imagenet_dataset_val = ImageFolder(root='dataset/tiny-imagenet-200/val', transform=transform)
+transform = T.Compose([
+    T.Resize((224, 224)),  # Resize to fit the input dimensions of the network
+    T.ToTensor(),
+    T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    # mean and standard deviation for this dataset
+])
+# root folder / class name / name of the file of the parameters
+# root/{classX}/x001.jpg
+#root is the folder that contains all the data for the model
+tiny_imagenet_dataset_train = ImageFolder(root='dataset/tiny-imagenet-200/train', transform=transform)
+tiny_imagenet_dataset_val = ImageFolder(root='dataset/tiny-imagenet-200/val', transform=transform)
 
-        print(f"Length of train dataset: {len(self.tiny_imagenet_dataset_train)}")
-        print(f"Length of val dataset: {len(self.tiny_imagenet_dataset_val)}")
+print(f"Length of train dataset: {len(tiny_imagenet_dataset_train)}")
+print(f"Length of val dataset: {len(tiny_imagenet_dataset_val)}")
 
-        # During training we are introducing some noise
-        self.train_loader = torch.utils.data.DataLoader(self.tiny_imagenet_dataset_train, batch_size=32, shuffle=True, num_workers=8)
-        self.val_loader = torch.utils.data.DataLoader(self.tiny_imagenet_dataset_val, batch_size=32, shuffle=False)
-        
-    def getTrainLoader(self):
-        return self.train_loader
-    
-    def getValLoader(self):
-        return self.val_loader
+# During training we are introducing some noise
+train_loader = torch.utils.data.DataLoader(tiny_imagenet_dataset_train, batch_size=32, shuffle=True, num_workers=8)
+val_loader = torch.utils.data.DataLoader(tiny_imagenet_dataset_val, batch_size=32, shuffle=False)
