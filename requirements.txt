@@ -2,3 +2,4 @@ torchvision
 torch
 os-sys
 pytest-shutil
+wandb
