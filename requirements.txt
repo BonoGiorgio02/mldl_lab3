@@ -1,4 +1,4 @@
 torchvision
 torch
-os
+os-sys
 shutil
