@@ -57,8 +57,8 @@ transform = T.Compose([
 # root folder / class name / name of the file of the parameters
 # root/{classX}/x001.jpg
 #root is the folder that contains all the data for the model
-tiny_imagenet_dataset_train = ImageFolder(root='tiny-imagenet/tiny-imagenet-200/train', transform=transform)
-tiny_imagenet_dataset_val = ImageFolder(root='tiny-imagenet/tiny-imagenet-200/val', transform=transform)
+tiny_imagenet_dataset_train = ImageFolder(root='dataset/tiny-imagenet-200/train', transform=transform)
+tiny_imagenet_dataset_val = ImageFolder(root='dataset/tiny-imagenet-200/val', transform=transform)
 
 print(f"Length of train dataset: {len(tiny_imagenet_dataset_train)}")
 print(f"Length of val dataset: {len(tiny_imagenet_dataset_val)}")
