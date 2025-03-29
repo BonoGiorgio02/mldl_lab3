@@ -2,4 +2,3 @@ torchvision
 torch
 os-sys
 pytest-shutil
-zipfile
