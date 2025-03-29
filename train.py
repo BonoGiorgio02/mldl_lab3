@@ -47,4 +47,4 @@ optimizer = torch.optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
 num_epochs = 10
 train_loader = trainLoader.getTrainLoader
 for epoch in range(1, num_epochs + 1):
-    train(epoch, model, train_loader, criterion, optimizer)
+    train(epoch, model, train_loader(), criterion, optimizer)
