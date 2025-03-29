@@ -47,15 +47,14 @@ with open(annotations_file, "r") as f:
 # Rimuoviamo la cartella images vuota
 shutil.rmtree(os.path.join(val_dir, "images"))
 
-transform = T.Compose([
-    T.Resize((224, 224)),  # Resize to fit the input dimensions of the network
-    T.ToTensor(),
-    T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-    # mean and standard deviation for this dataset
-])
-
 class dataLoader():
     def _init(self):
+        transform = T.Compose([
+            T.Resize((224, 224)),  # Resize to fit the input dimensions of the network
+            T.ToTensor(),
+            T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+            # mean and standard deviation for this dataset
+        ])
         # root folder / class name / name of the file of the parameters
         # root/{classX}/x001.jpg
         #root is the folder that contains all the data for the model
