@@ -1,4 +1,7 @@
 from models.customnet import CustomNet
+from utils.download_dataset import dataLoader
+import torch
+from torch import nn
 
 def train(epoch, model, train_loader, criterion, optimizer):
     model.train()
@@ -33,3 +36,14 @@ def train(epoch, model, train_loader, criterion, optimizer):
     train_loss = running_loss / len(train_loader)
     train_accuracy = 100. * correct / total
     print(f'Train Epoch: {epoch} Loss: {train_loss:.6f} Acc: {train_accuracy:.2f}%')
+    
+
+model = CustomNet().cuda()
+trainLoader = dataLoader()
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
+
+# Run the training process for {num_epochs} epochs
+num_epochs = 10
+for epoch in range(1, num_epochs + 1):
+    train(epoch, model, trainLoader.getTrainLoader(), criterion, optimizer)
