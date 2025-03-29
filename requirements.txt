@@ -1,5 +1,4 @@
-torchvision.dataset
-torchvision.transforms
+torchvision
 torch
 os
 shutil
