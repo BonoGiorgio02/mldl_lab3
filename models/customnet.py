@@ -19,6 +19,7 @@ class CustomNet(nn.Module):
 
         # Funzione di attivazione
         self.relu = nn.ReLU()
+        self.dropout = nn.Dropout(p=0.1)
 
     def forward(self, x):
         # Convolutional layers con ReLU
@@ -33,6 +34,7 @@ class CustomNet(nn.Module):
 
         # Fully connected layers con ReLU
         x = self.relu(self.fc1(x))    # B x 512
+        x = self.dropout(x)
         x = self.fc2(x)               # B x 200 (output finale con softmax da applicare dopo)
 
         return x

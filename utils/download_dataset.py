@@ -49,6 +49,10 @@ shutil.rmtree(os.path.join(val_dir, "images"))
 
 transform = T.Compose([
     T.Resize((224, 224)),  # Resize to fit the input dimensions of the network
+    T.RandomHorizontalFlip(),  # Flipping orizzontale
+    T.RandomRotation(15),      # Rotazione casuale
+    T.ColorJitter(brightness=0.2, contrast=0.2),  # Modifica colori
+    T.RandomAffine(10, translate=(0.1, 0.1)), # Distorsioni casuali
     T.ToTensor(),
     T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     # mean and standard deviation for this dataset
