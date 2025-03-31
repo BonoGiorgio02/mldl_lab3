@@ -1,6 +1,7 @@
 from models.customnet import CustomNet
 import torch
 from torch import nn
+from utils.download_dataset import train_loader
 
 def train(epoch, model, train_loader, criterion, optimizer):
     model.train()
